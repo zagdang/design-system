@@ -9,9 +9,4 @@ export default defineConfig({
       '@': '/src'
     }
   },
-  build: {
-    rollupOptions: {
-      external: ['react/jsx-runtime'],  
-    }
-  }
 })
