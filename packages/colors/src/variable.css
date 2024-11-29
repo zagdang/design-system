@@ -1,0 +1,65 @@
+:root {
+  /* Background Colors */
+  --gdgoc-background-primary: #1a122b;
+  --gdgoc-background-secondary: #1f1632;
+  --gdgoc-background-tertiary: #2d294a;
+  --gdgoc-background-quaternary: #392f4f;
+  --gdgoc-background-quinary: #403755;
+
+  /* Brand Colors */
+  --gdgoc-brand-red: #ea4335;
+  --gdgoc-brand-yellow: #fbbc05;
+  --gdgoc-brand-blue: #4285f4;
+
+  /* Gray Colors */
+  --gdgoc-gray-100: #d9d9d9;
+  --gdgoc-gray-200: #9d9aa5;
+  --gdgoc-gray-300: #979ca4;
+
+  /* White Colors with Opacity */
+  --gdgoc-white-100: #ffffff;
+  --gdgoc-white-40: #ffffff66;
+  --gdgoc-white-15: #ffffff26;
+
+  /* Button Hover Colors */
+  --gdgoc-button-hover-gray-primary: #b2b2b2;
+  --gdgoc-button-hover-gray-blue: #2e5dab;
+  --gdgoc-button-hover-darkgray-primary: #6a6d73;
+  --gdgoc-button-hover-darkgray-secondary: #989898;
+  --gdgoc-button-hover-red-primary: #b2b2b2;
+  --gdgoc-button-hover-red-secondary: #a42f25;
+  --gdgoc-button-hover-yellow-primary: #b2b2b2;
+  --gdgoc-button-hover-yellow-secondary: #b08404;
+  --gdgoc-button-hover-dark-primary: #1f1a2c;
+  --gdgoc-button-hover-dark-secondary: #ffffffb3;
+
+  /* Typography - Bold */
+  --gdgoc-typography-bold-h1: 40px;
+  --gdgoc-typography-bold-h2: 36px;
+  --gdgoc-typography-bold-h3: 24px;
+  --gdgoc-typography-bold-h4: 16px;
+  --gdgoc-typography-bold-h5: 14px;
+  --gdgoc-typography-bold-h6: 10px;
+
+  /* Typography - Medium */
+  --gdgoc-typography-medium-h1: 20px;
+  --gdgoc-typography-medium-h2: 16px;
+  --gdgoc-typography-medium-h3: 14px;
+  --gdgoc-typography-medium-h4: 13px;
+  --gdgoc-typography-medium-h5: 12px;
+
+  /* Typography - Regular */
+  --gdgoc-typography-regular-h1: 20px;
+  --gdgoc-typography-regular-h2: 16px;
+  --gdgoc-typography-regular-h3: 14px;
+  --gdgoc-typography-regular-h4: 12px;
+  --gdgoc-typography-regular-h5: 10px;
+
+  /* Typography - Light */
+  --gdgoc-typography-light-h1: 36px;
+  --gdgoc-typography-light-h2: 32px;
+  --gdgoc-typography-light-h3: 16px;
+  --gdgoc-typography-light-h4: 14px;
+  --gdgoc-typography-light-h5: 13px;
+  --gdgoc-typography-light-h6: 10px;
+}
