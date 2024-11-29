@@ -2,6 +2,11 @@
   "name": "gdgoc-knu-design-system",
   "packageManager": "yarn@4.5.3",
   "private": true,
+  "scripts": {
+    "icons": "yarn workspace @gdgoc-knu/icons",
+    "colors": "yarn workspace @gdgoc-knu/colors",
+    "ui": "yarn workspace @gdgoc-knu/ui"
+  },
   "workspaces": [
     "packages/*",
     "apps/*"
