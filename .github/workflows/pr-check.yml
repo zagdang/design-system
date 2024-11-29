@@ -3,9 +3,9 @@ name: PR Check
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: ['*']
+    branches: ["*"]
   push:
-    branches: ['*']
+    branches: ["*"]
 
 jobs:
   build-and-test:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Enable Corepack
         run: corepack enable
@@ -40,10 +40,13 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable --inline-builds --mode=skip-build
 
       - name: Run lint
         run: yarn lint
 
       - name: Run build
         run: yarn build
+
+      - name: Check yarn.lock integrity
+        run: yarn install --immutable
