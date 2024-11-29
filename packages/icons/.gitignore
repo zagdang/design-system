@@ -1,0 +1,12 @@
+# Build output
+dist
+dist-ssr
+
+# Rollup cache
+.rollup.cache
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Test coverage
+coverage
