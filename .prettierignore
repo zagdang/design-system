@@ -1,0 +1,22 @@
+# 빌드 산출물
+dist
+build
+
+# 의존성 디렉토리
+node_modules
+.yarn
+
+# 캐시 
+.cache
+.eslintcache
+
+# 환경설정 파일들
+.prettierrc
+.eslintrc
+*.config.js
+*.config.ts
+
+# 기타
+coverage
+*.log
+.DS_Store
