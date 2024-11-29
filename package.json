@@ -11,7 +11,8 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --max-warnings=0",
     "lint:fix": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
-    "check": "yarn format:check && yarn lint"
+    "check": "yarn format:check && yarn lint",
+    "build": "vite build"
   },
   "packageManager": "yarn@4.5.3",
   "devDependencies": {
