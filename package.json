@@ -3,6 +3,10 @@
   "packageManager": "yarn@4.5.3",
   "private": true,
   "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
     "icons": "yarn workspace @gdgoc-knu/icons",
     "colors": "yarn workspace @gdgoc-knu/colors",
     "ui": "yarn workspace @gdgoc-knu/ui"
