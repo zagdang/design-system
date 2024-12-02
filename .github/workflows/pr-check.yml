@@ -1,52 +1,46 @@
-name: PR Check
+name: PR and Push Check
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches: ["*"]
+    branches:
+      - main
+      - develop  
   push:
-    branches: ["*"]
+    branches:
+      - '**'  # 모든 브랜치에 대해 실행
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  pr-push-check:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: "20"
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup yarn
-        run: corepack prepare yarn@4.5.3 --activate
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+          node-version: '18'  # 프로젝트에서 사용하는 Node.js 버전으로 설정
 
       - name: Cache yarn dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: ~/.yarn/cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependencies
-        run: yarn install --immutable --inline-builds --mode=skip-build
+      - name: Set up Yarn 2 (Berry)
+        run: corepack enable && corepack prepare yarn@4.5.3 --activate
 
-      - name: Run lint
+      - name: Install dependencies
+        run: yarn install --immutable --frozen-lockfile
+
+      - name: Run lint checks
         run: yarn lint
 
-      - name: Run build
-        run: yarn build
+      - name: Run format check
+        run: yarn format --check
 
-      - name: Check yarn.lock integrity
-        run: yarn install --immutable
+      - name: Build the project
+        run: yarn build  # 빌드 체크 추가
