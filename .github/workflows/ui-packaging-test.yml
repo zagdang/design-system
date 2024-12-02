@@ -29,5 +29,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable    
  
-      - name: Run test script
-        run: echo "Test script running"
+      - name: Run tests
+        run: |
+          yarn add -D jest @testing-library/jest-dom @testing-library/dom @testing-library/react
+          yarn test
