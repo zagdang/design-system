@@ -1,11 +1,13 @@
 name: UI Package Test
 
 on:
-  pull_request:
-    branches: [main, develop]
+  push:
+    branches:
+      - '**'  # 모든 브랜치
     paths:
       - 'packages/ui/**'
-  push:
+  pull_request:
+    branches: [main, develop]
     paths:
       - 'packages/ui/**'
 
