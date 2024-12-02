@@ -81,75 +81,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gdgoc-knu/colors@workspace:*, @gdgoc-knu/colors@workspace:packages/colors":
-  version: 0.0.0-use.local
-  resolution: "@gdgoc-knu/colors@workspace:packages/colors"
-  dependencies:
-    "@rollup/plugin-commonjs": "npm:^25.0.0"
-    "@rollup/plugin-node-resolve": "npm:^15.0.0"
-    "@rollup/plugin-typescript": "npm:^11.0.0"
-    eslint: "npm:^8.0.0"
-    rollup: "npm:^4.0.0"
-    rollup-plugin-dts: "npm:^6.0.0"
-    tslib: "npm:^2.6.0"
-    typescript: "npm:^5.7.2"
-  languageName: unknown
-  linkType: soft
-
-"@gdgoc-knu/icons@workspace:packages/icons":
-  version: 0.0.0-use.local
-  resolution: "@gdgoc-knu/icons@workspace:packages/icons"
-  dependencies:
-    "@rollup/plugin-commonjs": "npm:^25.0.0"
-    "@rollup/plugin-node-resolve": "npm:^15.0.0"
-    "@rollup/plugin-typescript": "npm:^11.0.0"
-    "@types/react": "npm:^18.2.0"
-    "@types/react-dom": "npm:^18.2.0"
-    eslint: "npm:^8.0.0"
-    react: "npm:^18.2.0"
-    rollup: "npm:^4.0.0"
-    rollup-plugin-dts: "npm:^6.0.0"
-    tslib: "npm:^2.6.0"
-    typescript: "npm:^5.7.2"
-  peerDependencies:
-    react: ^18.2.0
-  languageName: unknown
-  linkType: soft
-
-"@gdgoc-knu/ui@workspace:packages/ui":
-  version: 0.0.0-use.local
-  resolution: "@gdgoc-knu/ui@workspace:packages/ui"
-  dependencies:
-    "@gdgoc-knu/colors": "workspace:*"
-    "@radix-ui/react-slot": "npm:^1.1.0"
-    "@rollup/plugin-commonjs": "npm:^25.0.0"
-    "@rollup/plugin-node-resolve": "npm:^15.0.0"
-    "@rollup/plugin-typescript": "npm:^11.0.0"
-    "@types/node": "npm:^22.10.1"
-    "@types/react": "npm:^18.3.12"
-    "@types/react-dom": "npm:^18.3.1"
-    "@yarnpkg/sdks": "npm:^3.2.0"
-    autoprefixer: "npm:^10.4.20"
-    class-variance-authority: "npm:^0.7.1"
-    clsx: "npm:^2.1.1"
-    eslint: "npm:^8.0.0"
-    lucide-react: "npm:^0.462.0"
-    postcss: "npm:^8.4.49"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    rollup: "npm:^4.0.0"
-    rollup-plugin-dts: "npm:^6.0.0"
-    tailwind-merge: "npm:^2.5.5"
-    tailwindcss: "npm:^3.4.15"
-    tailwindcss-animate: "npm:^1.0.7"
-    tslib: "npm:^2.6.0"
-    typescript: "npm:^5.7.2"
-  peerDependencies:
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  languageName: unknown
-  linkType: soft
-
 "@humanwhocodes/config-array@npm:^0.13.0":
   version: 0.13.0
   resolution: "@humanwhocodes/config-array@npm:0.13.0"
@@ -519,6 +450,75 @@ __metadata:
   checksum: 10c0/33b6fb1d0834ec8dd7689ddc0e2781c2bfd8b9c4e4bacbcb14111e0ae00621f2c264b8a7d36541799d74888b5dccdf422a891a5cb5a709ace26325eedc81e22e
   languageName: node
   linkType: hard
+
+"@summit-up/colors@workspace:*, @summit-up/colors@workspace:packages/colors":
+  version: 0.0.0-use.local
+  resolution: "@summit-up/colors@workspace:packages/colors"
+  dependencies:
+    "@rollup/plugin-commonjs": "npm:^25.0.0"
+    "@rollup/plugin-node-resolve": "npm:^15.0.0"
+    "@rollup/plugin-typescript": "npm:^11.0.0"
+    eslint: "npm:^8.0.0"
+    rollup: "npm:^4.0.0"
+    rollup-plugin-dts: "npm:^6.0.0"
+    tslib: "npm:^2.6.0"
+    typescript: "npm:^5.7.2"
+  languageName: unknown
+  linkType: soft
+
+"@summit-up/icons@workspace:packages/icons":
+  version: 0.0.0-use.local
+  resolution: "@summit-up/icons@workspace:packages/icons"
+  dependencies:
+    "@rollup/plugin-commonjs": "npm:^25.0.0"
+    "@rollup/plugin-node-resolve": "npm:^15.0.0"
+    "@rollup/plugin-typescript": "npm:^11.0.0"
+    "@types/react": "npm:^18.2.0"
+    "@types/react-dom": "npm:^18.2.0"
+    eslint: "npm:^8.0.0"
+    react: "npm:^18.2.0"
+    rollup: "npm:^4.0.0"
+    rollup-plugin-dts: "npm:^6.0.0"
+    tslib: "npm:^2.6.0"
+    typescript: "npm:^5.7.2"
+  peerDependencies:
+    react: ^18.2.0
+  languageName: unknown
+  linkType: soft
+
+"@summit-up/ui@workspace:packages/ui":
+  version: 0.0.0-use.local
+  resolution: "@summit-up/ui@workspace:packages/ui"
+  dependencies:
+    "@radix-ui/react-slot": "npm:^1.1.0"
+    "@rollup/plugin-commonjs": "npm:^25.0.0"
+    "@rollup/plugin-node-resolve": "npm:^15.0.0"
+    "@rollup/plugin-typescript": "npm:^11.0.0"
+    "@summit-up/colors": "workspace:*"
+    "@types/node": "npm:^22.10.1"
+    "@types/react": "npm:^18.3.12"
+    "@types/react-dom": "npm:^18.3.1"
+    "@yarnpkg/sdks": "npm:^3.2.0"
+    autoprefixer: "npm:^10.4.20"
+    class-variance-authority: "npm:^0.7.1"
+    clsx: "npm:^2.1.1"
+    eslint: "npm:^8.0.0"
+    lucide-react: "npm:^0.462.0"
+    postcss: "npm:^8.4.49"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    rollup: "npm:^4.0.0"
+    rollup-plugin-dts: "npm:^6.0.0"
+    tailwind-merge: "npm:^2.5.5"
+    tailwindcss: "npm:^3.4.15"
+    tailwindcss-animate: "npm:^1.0.7"
+    tslib: "npm:^2.6.0"
+    typescript: "npm:^5.7.2"
+  peerDependencies:
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  languageName: unknown
+  linkType: soft
 
 "@szmarczak/http-timer@npm:^4.0.5":
   version: 4.0.6
@@ -1635,15 +1635,6 @@ __metadata:
   checksum: 10c0/d8680ee1e5fcd4c197e4ac33b2b4dce03c71f4d91717292785703db200f5c21f977c568d28061226f9b5900cbcd2c84463646134fd5337e7925e0942bc3f46d5
   languageName: node
   linkType: hard
-
-"gdgoc-knu-design-system@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "gdgoc-knu-design-system@workspace:."
-  dependencies:
-    turbo: "npm:^2.3.3"
-    typescript: "npm:^5.7.2"
-  languageName: unknown
-  linkType: soft
 
 "get-stream@npm:^5.1.0":
   version: 5.2.0
@@ -3136,6 +3127,15 @@ __metadata:
   checksum: 10c0/ac85f3359d2c2ecbf5febca6a24ae9bf96c931f05fde533c22a94f59c6a74895e5d5f0e871878dfd59c2697a75ebb04e4b2224ef0bfc24ca1210735c2ec191ef
   languageName: node
   linkType: hard
+
+"summit-up-design-system@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "summit-up-design-system@workspace:."
+  dependencies:
+    turbo: "npm:^2.3.3"
+    typescript: "npm:^5.7.2"
+  languageName: unknown
+  linkType: soft
 
 "supports-color@npm:^7.1.0":
   version: 7.2.0

@@ -1,1 +1,1 @@
-# GDGoC_KNU_Design_System
+# Summit_Up_Design_System
