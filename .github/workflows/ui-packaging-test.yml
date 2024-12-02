@@ -1,0 +1,30 @@
+name: UI Package Test
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'packages/ui/**'
+  push:
+    paths:
+      - 'packages/ui/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/ui
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: yarn install
+      
+      - name: Run tests
+        run: yarn test
