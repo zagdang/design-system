@@ -1,6 +1,7 @@
 # Build output
 dist
 dist-ssr
+node_modules
 
 # Rollup cache
 .rollup.cache
@@ -17,3 +18,4 @@ coverage
 
 # Storybook
 storybook-static
+*storybook.log
