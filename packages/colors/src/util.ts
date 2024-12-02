@@ -1,4 +1,4 @@
-import { colors, typography } from "./index";
+import { colors, typography } from './index';
 
 // colors 객체의 중첩 경로를 표현하는 타입
 type ColorPath =
@@ -20,12 +20,14 @@ type RegularLevel = keyof typeof typography.regular;
 type LightLevel = keyof typeof typography.light;
 
 export const getColor = (path: ColorPath) => {
-  return path.split(".").reduce((obj: any, key) => obj[key], colors);
+  return path.split('.').reduce((obj: any, key: string) => {
+    return obj[key];
+  }, colors);
 };
 
 export const getFontSize = (
   weight: keyof typeof typography,
-  level: BoldLevel | MediumLevel | RegularLevel | LightLevel
+  level: BoldLevel | MediumLevel | RegularLevel | LightLevel,
 ) => {
   return typography[weight][level as keyof (typeof typography)[typeof weight]];
 };
@@ -35,10 +37,10 @@ type CSSVariableObject = {
 };
 
 export const generateCssVariables = () => {
-  const flattenObject = (obj: object, prefix = ""): CSSVariableObject => {
+  const flattenObject = (obj: object, prefix = ''): CSSVariableObject => {
     return Object.entries(obj).reduce((acc, [key, value]) => {
       const newKey = prefix ? `${prefix}-${key}` : key;
-      if (typeof value === "object" && value !== null) {
+      if (typeof value === 'object' && value !== null) {
         Object.assign(acc, flattenObject(value, newKey));
       } else {
         acc[`--gdgoc-${newKey}`] = value as string;
