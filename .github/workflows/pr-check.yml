@@ -4,10 +4,12 @@ on:
   pull_request:
     branches:
       - main
-      - develop  
-  push:
+      - develop
+  pull_request_target:
+    types: [synchronize]
     branches:
-      - '**'  # 모든 브랜치에 대해 실행
+      - main
+      - develop
 
 jobs:
   pr-push-check:
