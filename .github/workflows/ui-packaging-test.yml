@@ -3,13 +3,9 @@ name: UI Package Test
 on:
   push:
     branches:
-      - '**'  # 모든 브랜치
-    paths:
-      - 'packages/ui/**'
+      - '**'  
   pull_request:
     branches: [main, develop]
-    paths:
-      - 'packages/ui/**'
 
 jobs:
   test:
@@ -17,23 +13,21 @@ jobs:
     defaults:
       run:
         working-directory: packages/ui
-
+ 
     steps:
       - uses: actions/checkout@v3
-
+      
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-
+ 
       - name: Setup Yarn
         run: |
             corepack enable
             corepack prepare yarn@4.5.3 --activate
         
       - name: Install dependencies
-        run: |
-          yarn install --immutable    
-          yarn add -D jest @testing-library/jest-dom @testing-library/dom
-
+        run: yarn install --immutable    
+ 
       - name: Run test script
-        run: echo "Test script running" # 임시 테스트 스크립트
+        run: echo "Test script running"
