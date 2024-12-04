@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '@summit-up/colors/styles/variable.css';
 
 @layer base {
   :root {

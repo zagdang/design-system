@@ -5,6 +5,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        error: "hsl(var(--error))",
+        warning: "hsl(var(--warning))",
+        text: "hsl(var(--text))",
+        brand: {
+          100: "hsl(var(--brand-100))",
+          200: "hsl(var(--brand-200))",
+          300: "hsl(var(--brand-300))",
+          400: "hsl(var(--brand-400))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
