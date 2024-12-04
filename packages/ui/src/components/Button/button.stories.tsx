@@ -12,11 +12,11 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+      options: ['default', 'destructive', 'outline', 'ghost', 'system'],
     },
     size: {
       control: 'select',
-      options: ['default', 'sm', 'lg', 'icon'],
+      options: ['default', 'full', 'sys_sm', 'sys_md', 'sys_full', 'tag'],
     },
     children: {
       control: 'text',
@@ -43,10 +43,9 @@ export const Variants: Story = {
     <div className="flex flex-wrap gap-4">
       <Button variant="default">Default</Button>
       <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
+      <Button variant="outline">Tag</Button>
+      <Button variant="ghost">System-Ghost</Button>
+      <Button variant="system">System-Button</Button>
     </div>
   ),
 };
@@ -55,10 +54,32 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-4">
-      <Button size="sm">Small</Button>
       <Button size="default">Default</Button>
-      <Button size="lg">Large</Button>
-      <Button size="icon">👋</Button>
+      <Button size="full">티켓 구입 하러가기</Button>
+      <Button
+        variant="system"
+        size="sys_sm"
+      >
+        System
+      </Button>
+      <Button
+        variant="system"
+        size="sys_md"
+      >
+        System
+      </Button>
+      <Button
+        variant="system"
+        size="sys_full"
+      >
+        System-full
+      </Button>
+      <Button
+        variant="outline"
+        size="tag"
+      >
+        IT/기술
+      </Button>
     </div>
   ),
 };

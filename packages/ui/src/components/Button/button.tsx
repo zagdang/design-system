@@ -5,8 +5,8 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 type ButtonVariantsProps = {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
-  size?: 'default' | 'sm' | 'lg' | 'icon';
+  variant?: 'default' | 'system' | 'destructive' | 'outline' | 'ghost';
+  size?: 'default' | 'full' | 'tag' | 'sys_sm' | 'sys_md' | 'sys_full';
   className?: string;
 };
 
@@ -15,18 +15,19 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+        default: 'bg-primary text-destructive-foreground shadow hover:bg-primary/90',
+        system: 'bg-system text-system-foreground shadow-sm hover:bg-system/90',
         destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline: 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        ghost: 'hover:bg-accent hover:text-system',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
-        icon: 'h-9 w-9',
+        default: 'h-10 rounded-md py-3 px-5 text-base',
+        full: 'w-full h-10 rounded-md py-4 px-5 text-base',
+        sys_sm: 'h-6 rounded-md py-px px-1.5 text-xs',
+        sys_md: 'rounded-md py-2 px-8 text-sm',
+        sys_full: 'w-full h-9 rounded-md py-3.5 px-5 text-sm',
+        tag: 'h-9 rounded-full px-4 text-base',
       },
     },
     defaultVariants: {
