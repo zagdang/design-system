@@ -1,26 +1,10 @@
 {
   "name": "@summit-up/colors",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "type": "module",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "sideEffects": false,
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "lint": "eslint src/**/*.ts"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "eslint": "^8.0.0",
-    "rollup": "^4.0.0",
-    "rollup-plugin-dts": "^6.0.0",
-    "tslib": "^2.6.0",
-    "typescript": "^5.7.2"
-  },
+  "style": "styles/variable.css",
+  "files": [
+    "styles/variable.css"
+  ],
   "publishConfig": {
     "access": "public"
   }
