@@ -5,13 +5,33 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
+  "extends": [
+    "eslint:recommended", 
+    "plugin:@typescript-eslint/recommended", 
+    "plugin:prettier/recommended", 
+    "plugin:import/typescript",
+    "prettier"
+  ],
   "rules": {
     "prettier/prettier": "error",
     "@typescript-eslint/no-explicit-any": "warn", // any 타입 사용에 경고
     "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }], // 사용되지 않는 변수는 오류
     "@typescript-eslint/explicit-module-boundary-types": "off", // 명시적인 타입 선언을 요구하지 않음
-    "@typescript-eslint/no-unused-expressions": "off" // 사용되지 않는 표현식은 오류
+    "@typescript-eslint/no-unused-expressions": "off", // 사용되지 않는 표현식은 오류
+    "@typescript-eslint/consistent-type-imports": ["error", {
+      "prefer": "type-imports"
+    }], // 타입 import를 선호
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ] // import 순서
   }
 }

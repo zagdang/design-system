@@ -1,0 +1,105 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { Button } from '../components/Button/button.tsx';
+
+<Meta title="Design System/Colors" />
+
+# Design System
+
+## Tokens
+
+이 디자인 시스템은 테일윈드 CSS를 기반으로 하며, CSS 변수를 사용하여 일관된 색상 시스템을 제공합니다.
+
+### Base Colors
+
+<ColorPalette>
+  <ColorItem
+    title="color_tokens"
+    subtitle="디자인 토큰"
+    colors={{
+      brand300: 'hsl(var(--brand-300))',
+      brand400: 'hsl(var(--brand-400))',
+      brand500: 'hsl(var(--brand-500))',
+      brand600: 'hsl(var(--brand-600))',
+    }}
+  />
+  <ColorItem
+    title="color_tokens"
+    subtitle="특정 색 토큰"
+    colors={{
+      error: 'hsl(var(--destructive))',
+      warning: 'hsl(var(--warning))',
+      text_black: 'hsl(var(--text))',
+      text_white: 'hsl(var(--text-white))',
+    }}
+  />
+</ColorPalette>
+
+### UI Elements
+
+<ColorPalette>
+  <ColorItem
+    title="border"
+    subtitle="테두리"
+    colors={{
+      border: 'hsl(var(--border))',
+    }}
+  />
+  <ColorItem
+    title="input"
+    subtitle="입력 필드"
+    colors={{
+      input: 'hsl(var(--input))',
+    }}
+  />
+  <ColorItem
+    title="ring"
+    subtitle="포커스 링"
+    colors={{
+      ring: 'hsl(var(--ring))',
+    }}
+  />
+</ColorPalette>
+
+## 사용 방법
+
+### CSS 변수 사용
+
+```css
+.custom-element {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+```
+
+### Tailwind 클래스 사용
+
+```jsx
+<div className="bg-background text-foreground">
+  <p className="text-primary">Primary Text</p>
+  <button className="bg-accent text-accent-foreground">Accent Button</button>
+</div>
+```
+
+### 기타 설정
+
+- Border Radius: `--radius: 0.5rem`
+- Summit-up Colors 통합
+- Tailwind 기본 설정 확장
+
+## 컴포넌트 예시
+
+다음은 이 색상 시스템을 사용하는 기본적인 버튼 컴포넌트의 예시입니다:
+
+```jsx
+export const Button = {
+  args: {
+    variant: 'default',
+    children: 'Button',
+  },
+  variants: {
+    default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+    accent: 'bg-accent text-accent-foreground hover:bg-accent/90',
+  },
+};
+```

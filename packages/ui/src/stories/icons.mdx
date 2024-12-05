@@ -1,0 +1,167 @@
+import { Meta, IconGallery, IconItem, Markdown } from '@storybook/blocks';
+import {
+  DashBoard,
+  Img,
+  Location,
+  Money,
+  Check,
+  List,
+  CallService,
+  Tickets,
+  Option,
+  Board,
+  Edit,
+  Message,
+  Groups,
+  QRCode,
+  ExLink,
+  RightArrow,
+  Close,
+  Find,
+  Calendar,
+  PhoneCall,
+  Delete,
+  Previous,
+} from '@zagdang/icons';
+
+<Meta title="Design System/icons" />
+
+# Iconography
+
+Lucide 아이콘 라이브러리를 사용합니다.
+
+## Common Icons
+
+<IconGallery>
+  <IconItem name="Check">
+    <Check />
+  </IconItem>
+  <IconItem name="Message">
+    <Message />
+  </IconItem>
+  <IconItem name="ExLink">
+    <ExLink />
+  </IconItem>
+  <IconItem name="Tickets">
+    <Tickets />
+  </IconItem>
+  <IconItem name="Groups">
+    <Groups />
+  </IconItem>
+</IconGallery>
+
+## Client Icons
+
+<IconGallery>
+  <IconItem name="RightArrow">
+    <RightArrow />
+  </IconItem>
+  <IconItem name="Close">
+    <Close />
+  </IconItem>
+  <IconItem name="Find">
+    <Find />
+  </IconItem>
+  <IconItem name="Calendar">
+    <Calendar />
+  </IconItem>
+  <IconItem name="PhoneCall">
+    <PhoneCall />
+  </IconItem>
+  <IconItem name="Delete">
+    <Delete />
+  </IconItem>
+</IconGallery>
+
+## System Icons
+
+<IconGallery>
+  <IconItem name="Dashboard">
+    <DashBoard />
+  </IconItem>
+  <IconItem name="Img">
+    <Img />
+  </IconItem>
+  <IconItem name="Location">
+    <Location />
+  </IconItem>
+  <IconItem name="Money">
+    <Money />
+  </IconItem>
+  <IconItem name="List">
+    <List />
+  </IconItem>
+  <IconItem name="CallService">
+    <CallService />
+  </IconItem>
+  <IconItem name="Option">
+    <Option />
+  </IconItem>
+  <IconItem name="Board">
+    <Board />
+  </IconItem>
+  <IconItem name="Edit">
+    <Edit />
+  </IconItem>
+  <IconItem name="QRCode">
+    <QRCode />
+  </IconItem>
+  <IconItem name="Previous">
+    <Previous />
+  </IconItem>
+</IconGallery>
+
+## 사용 방법
+
+### Installation
+
+```bash
+yarn add @zagdang/icons
+```
+
+### Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>size</td>
+      <td>number</td>
+      <td>24</td>
+      <td>아이콘 크기</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>string</td>
+      <td>currentColor</td>
+      <td>아이콘 색상</td>
+    </tr>
+    <tr>
+      <td>strokeWidth</td>
+      <td>number</td>
+      <td>2</td>
+      <td>선 굵기</td>
+    </tr>
+  </tbody>
+</table>
+
+### Example (color, size 변수 사용)
+
+```tsx
+import { DashBoard } from '@zagdang/icons';
+
+const Example = () => (
+  <DashBoard
+    size={48}
+    color="primary"
+    strokeWidth={2}
+  />
+);
+```
