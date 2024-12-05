@@ -12,7 +12,6 @@ function getAbsolutePath(value: string): any {
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-interactions'),
@@ -21,14 +20,20 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
-  viteFinal: (config) => {
-    config.css = {
+  viteFinal: (config) => ({
+    ...config,
+    resolve: {
+      alias: {
+        '@summit-up/icons': join(__dirname, '../../icons/src'),
+        '@': join(__dirname, '../src'),
+      },
+    },
+    css: {
       ...config.css,
       postcss: {
         plugins: [require('tailwindcss'), require('autoprefixer')],
       },
-    };
-    return config;
-  },
+    },
+  }),
 };
 export default config;

@@ -30,5 +30,5 @@ export default {
       outputToFilesystem: true,
     }),
   ],
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "lucide-react"],
 };
