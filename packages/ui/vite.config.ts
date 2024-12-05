@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@summit-up/icons': path.resolve(__dirname, '../icons/src'),
+      '@zagdang/icons': path.resolve(__dirname, '../icons/src'),
     },
   },
   build: {

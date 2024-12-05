@@ -1903,15 +1903,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@summit-up/colors@workspace:*, @summit-up/colors@workspace:packages/colors":
+"@zagdang/colors@workspace:*, @zagdang/colors@workspace:packages/colors":
   version: 0.0.0-use.local
-  resolution: "@summit-up/colors@workspace:packages/colors"
+  resolution: "@zagdang/colors@workspace:packages/colors"
   languageName: unknown
   linkType: soft
 
-"@summit-up/icons@workspace:*, @summit-up/icons@workspace:packages/icons":
+"@zagdang/icons@workspace:*, @zagdang/icons@workspace:packages/icons":
   version: 0.0.0-use.local
-  resolution: "@summit-up/icons@workspace:packages/icons"
+  resolution: "@zagdang/icons@workspace:packages/icons"
   dependencies:
     "@rollup/plugin-commonjs": "npm:^25.0.0"
     "@rollup/plugin-node-resolve": "npm:^15.0.0"
@@ -1931,9 +1931,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@summit-up/ui@workspace:packages/ui":
+"@zagdang/ui@workspace:packages/ui":
   version: 0.0.0-use.local
-  resolution: "@summit-up/ui@workspace:packages/ui"
+  resolution: "@zagdang/ui@workspace:packages/ui"
   dependencies:
     "@chromatic-com/storybook": "npm:^3.2.2"
     "@jest/globals": "npm:^29.7.0"
@@ -1948,8 +1948,8 @@ __metadata:
     "@storybook/react": "npm:^8.4.6"
     "@storybook/react-vite": "npm:^8.4.6"
     "@storybook/test": "npm:^8.4.6"
-    "@summit-up/colors": "workspace:*"
-    "@summit-up/icons": "workspace:*"
+    "@zagdang/colors": "workspace:*"
+    "@zagdang/icons": "workspace:*"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^14.2.1"

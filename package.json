@@ -9,9 +9,9 @@
     "lint:fix": "eslint . --fix && prettier --write .",
     "format": "prettier --write .",
     "clean": "turbo run clean",
-    "icons": "yarn workspace @summit-up/icons",
-    "colors": "yarn workspace @summit-up/colors",
-    "ui": "yarn workspace @summit-up/ui"
+    "icons": "yarn workspace @zagdang/icons",
+    "colors": "yarn workspace @zagdang/colors",
+    "ui": "yarn workspace @zagdang/ui"
   },
   "workspaces": [
     "packages/*",

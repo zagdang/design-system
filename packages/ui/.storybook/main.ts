@@ -24,7 +24,7 @@ const config: StorybookConfig = {
     ...config,
     resolve: {
       alias: {
-        '@summit-up/icons': join(__dirname, '../../icons/src'),
+        '@zagdang/icons': join(__dirname, '../../icons/src'),
         '@': join(__dirname, '../src'),
       },
     },
