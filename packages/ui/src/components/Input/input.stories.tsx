@@ -1,7 +1,10 @@
 // Input.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { Input } from './input';
+
+import { Button } from '@/components';
 
 const meta = {
   title: 'Components/Input',
@@ -58,9 +61,20 @@ export const Disabled: Story = {
   },
 };
 
-export const WithValue: Story = {
-  args: {
-    value: 'Sample text',
+export const WithValue_Controlled: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('Sample text');
+
+    return (
+      <div className="flex gap-2">
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Type to change..."
+        />
+        <Button onClick={() => alert(`Current value: ${value}`)}>Check</Button>
+      </div>
+    );
   },
 };
 
