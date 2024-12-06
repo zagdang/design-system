@@ -1,13 +1,15 @@
-name: 'Chromatic Deployment'
+name: 'Chromatic PR Review'
 
 on:
-  push:
-    branches:
-      - '**'
+  pull_request:
+    branches: [main, develop]
+  pull_request_target:
+    types: [synchronize]
+    branches: [main, develop]
 
 jobs:
-  chromatic:
-    name: 'Run Chromatic'
+  review:
+    name: 'Review Changes'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +26,6 @@ jobs:
           corepack enable
           corepack prepare yarn@4.5.3 --activate
 
-      # Zero-installs 사용으로 캐시 단계 제거
       - name: Install dependencies
         run: |
           yarn install --immutable
@@ -33,10 +34,21 @@ jobs:
       - name: Build Storybook
         run: yarn workspace @zagdang/ui build-storybook
 
-      - name: Publish to Chromatic
+      - name: Create Preview
+        id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: packages/ui
           storybookBuildDir: storybook-static
+          onlyChanged: true
           exitZeroOnChanges: true
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            📚 Storybook Preview Ready!
+            🔍 Review URL: ${{ steps.chromatic.outputs.storybookUrl }}
