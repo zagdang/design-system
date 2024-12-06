@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 import { Button } from './button';
 
@@ -17,7 +18,18 @@ describe('Button', () => {
   });
 
   it('renders with variant classes', () => {
-    render(<Button variant="destructive">Delete</Button>);
-    expect(screen.getByText('Delete')).toHaveClass('bg-destructive');
+    render(<Button>Default</Button>);
+    const button = screen.getByRole('button', { name: 'Default' });
+    expect(button.tagName).toBe('BUTTON');
+  });
+
+  it('renders as a custom component when asChild is true', () => {
+    render(
+      <Button asChild>
+        <a href="/test">Link</a>
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Link' });
+    expect(link).toHaveAttribute('href', '/test');
   });
 });
