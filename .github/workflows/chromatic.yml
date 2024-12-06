@@ -24,21 +24,10 @@ jobs:
           corepack enable
           corepack prepare yarn@4.5.3 --activate
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-
-      - name: Yarn Cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            yarn-cache-
-
+      # Zero-installs 사용으로 캐시 단계 제거
       - name: Install dependencies
         run: |
-          yarn install
+          yarn install --immutable
           yarn dlx @yarnpkg/sdks vscode
 
       - name: Build Storybook
