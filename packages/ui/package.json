@@ -83,9 +83,5 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
-  },
-  "jest": {
-    "coverageReporters": ["json-summary", "text", "lcov"],
-    "coverageDirectory": "coverage"
   }
 }
