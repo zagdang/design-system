@@ -40,6 +40,7 @@ export default {
           DEFAULT: 'hsl(var(--brand-600))',  
           foreground: 'hsl(var(--brand-600-foreground))', // error-foreground가 추가되었을 경우
         },
+        error: 'hsl(var(--error))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
