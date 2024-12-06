@@ -34,7 +34,7 @@ jobs:
           yarn dlx @yarnpkg/sdks vscode
 
       - name: Build Storybook
-        run: yarn workspace @zagdang/ui build-storybook
+        run: yarn workspace @zagdang/ui build-storybook --webpack-stats-json
 
       - name: Create Preview
         id: chromatic
