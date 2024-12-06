@@ -1,5 +1,9 @@
 name: UI Unit Test
 
+permissions:
+  pull-requests: write
+  contents: read
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -18,16 +22,35 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
- 
-      - name: Setup Yarn
+
+      - name: Set up Yarn 2 (Berry)
         run: |
             corepack enable
             corepack prepare yarn@4.5.3 --activate
         
       - name: Install dependencies
-        run: yarn install --immutable    
- 
-      - name: Run tests
+        run: yarn install --immutable --inline-builds    
+
+      - name: Run tests with coverage
+        run: yarn test --coverage
+
+      - name: Get Coverage Info
+        id: coverage
         run: |
-          yarn add -D jest @testing-library/jest-dom @testing-library/dom @testing-library/react
-          yarn test
+          COVERAGE_REPORT=$(cat coverage/coverage-summary.json)
+          echo "statements=$(echo $COVERAGE_REPORT | jq -r '.total.statements.pct')" >> $GITHUB_OUTPUT
+          echo "branches=$(echo $COVERAGE_REPORT | jq -r '.total.branches.pct')" >> $GITHUB_OUTPUT
+          echo "functions=$(echo $COVERAGE_REPORT | jq -r '.total.functions.pct')" >> $GITHUB_OUTPUT
+          echo "lines=$(echo $COVERAGE_REPORT | jq -r '.total.lines.pct')" >> $GITHUB_OUTPUT
+
+      - name: Comment PR with Coverage
+        uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            ## Test Coverage Report 📊
+            - Statements: ${{ steps.coverage.outputs.statements }}%
+            - Branches: ${{ steps.coverage.outputs.branches }}%
+            - Functions: ${{ steps.coverage.outputs.functions }}%
+            - Lines: ${{ steps.coverage.outputs.lines }}%
