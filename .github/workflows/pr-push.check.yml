@@ -1,4 +1,4 @@
-name: PR and Push Check
+name: PR and Push Check Test
 
 on:
   pull_request:
