@@ -1,4 +1,4 @@
-name: 'Chromatic PR Review'
+name: 'Chromatic PR Check'
 
 permissions:
   pull-requests: write
