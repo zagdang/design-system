@@ -19,7 +19,11 @@ jobs:
         with:
           node-version: '18'
 
-      # Yarn Berry 캐시 설정
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
@@ -37,9 +41,13 @@ jobs:
           yarn install
           yarn dlx @yarnpkg/sdks vscode
 
+      - name: Build Storybook
+        run: yarn workspace @zagdang/ui build-storybook
+
       - name: Publish to Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: packages/ui
-          exitZeroOnChanges: true # optional, prevent CI failing on changes
+          storybookBuildDir: storybook-static
+          exitZeroOnChanges: true
