@@ -2,12 +2,8 @@ name: UI Package Test
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
     branches: [main, develop]
-  pull_request_target:
-      types: [synchronize]
-      branches:
-        - main
-        - develop
 
 jobs:
   test:

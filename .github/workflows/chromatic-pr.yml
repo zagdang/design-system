@@ -6,9 +6,7 @@ permissions:
 
 on:
   pull_request:
-    branches: [main, develop]
-  pull_request_target:
-    types: [synchronize]
+    types: [opened, synchronize, reopened]
     branches: [main, develop]
 
 jobs:
