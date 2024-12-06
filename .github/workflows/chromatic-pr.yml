@@ -1,0 +1,60 @@
+name: 'Chromatic PR Review'
+
+permissions:
+  pull-requests: write
+  contents: read
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, develop]
+
+jobs:
+  review:
+    name: 'Review Changes'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
+
+      - name: Install dependencies
+        run: |
+          yarn install --immutable
+          yarn dlx @yarnpkg/sdks vscode
+
+      - name: Build Storybook
+        run: yarn workspace @zagdang/ui build-storybook
+
+      - name: Create Preview
+        id: chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/ui
+          storybookBuildDir: storybook-static
+          onlyChanged: true
+          exitZeroOnChanges: true
+
+      - name: Set URL
+        if: success()
+        run: echo "STORYBOOK_URL=${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_ENV
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            📚 Storybook Preview Ready!
+            🔍 Review URL: ${{ env.STORYBOOK_URL }}

@@ -1,0 +1,40 @@
+name: 'Chromatic Deploy'
+
+on:
+  push:
+    branches: [main, develop]
+
+jobs:
+  deploy:
+    name: 'Deploy Storybook'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
+
+      - name: Install dependencies
+        run: |
+          yarn install --immutable
+          yarn dlx @yarnpkg/sdks vscode
+
+      - name: Build Storybook
+        run: yarn workspace @zagdang/ui build-storybook
+
+      - name: Deploy to Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/ui
+          storybookBuildDir: storybook-static
+          autoAcceptChanges: true
