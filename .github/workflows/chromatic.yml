@@ -1,0 +1,45 @@
+name: 'Chromatic Deployment'
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  chromatic:
+    name: 'Run Chromatic'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Yarn Berry 캐시 설정
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - name: Yarn Cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-cache-
+
+      - name: Install dependencies
+        run: |
+          yarn install
+          yarn dlx @yarnpkg/sdks vscode
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/ui
+          exitZeroOnChanges: true # optional, prevent CI failing on changes
