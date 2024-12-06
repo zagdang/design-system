@@ -20,7 +20,10 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom'],
     },
+
     sourcemap: true,
     reportCompressedSize: false,
+    chunkSizeWarningLimit: 1000,
+    manifest: true,
   },
 });
