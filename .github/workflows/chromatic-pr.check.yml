@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn install --immutable --inline-builds    
+          yarn install --immutable 
           yarn dlx @yarnpkg/sdks vscode
 
       - name: Build Storybook
