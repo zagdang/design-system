@@ -24,9 +24,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+  
 
       - name: Set up Yarn 2 (Berry)
         run: corepack enable && corepack prepare yarn@4.5.3 --activate
