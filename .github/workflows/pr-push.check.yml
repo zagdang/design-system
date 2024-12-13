@@ -24,16 +24,15 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ github.sha }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-  
 
       - name: Set up Yarn 2 (Berry)
         run: corepack enable && corepack prepare yarn@4.5.3 --activate
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache
+        run: yarn install --immutable
 
       - name: Run lint checks
         run: yarn lint
