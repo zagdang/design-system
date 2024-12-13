@@ -561,6 +561,7 @@ __metadata:
 "@esbuild/linux-arm64@npm:0.24.0":
   version: 0.24.0
   resolution: "@esbuild/linux-arm64@npm:0.24.0"
+  checksum: 10c0/08a8c88643792f4bd19ad2f7574428bcdf7e0ca1487a54cfade3fc1c47d32f193534d4c02d0360446a862425404fcff7a930e308c8d65f229e5c18d7a38e3936
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -1614,21 +1615,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:^8.4.6":
-  version: 8.4.6
-  resolution: "@storybook/addon-interactions@npm:8.4.6"
-  dependencies:
-    "@storybook/global": "npm:^5.0.0"
-    "@storybook/instrumenter": "npm:8.4.6"
-    "@storybook/test": "npm:8.4.6"
-    polished: "npm:^4.2.2"
-    ts-dedent: "npm:^2.2.0"
-  peerDependencies:
-    storybook: ^8.4.6
-  checksum: 10c0/42e4bc2df354dba10217385687ac20fb355f4e1a2a7390812081d6b387151b67bca868211794e531c1e112dc4ce50c70dffa55c8f4338b0bd860d59363d58d5b
-  languageName: node
-  linkType: hard
-
 "@storybook/addon-measure@npm:8.4.6":
   version: 8.4.6
   resolution: "@storybook/addon-measure@npm:8.4.6"
@@ -1638,17 +1624,6 @@ __metadata:
   peerDependencies:
     storybook: ^8.4.6
   checksum: 10c0/fd05b49fdb102a991fc696a0f75fde08d372b692778340ab2abc2c73fbd31a07dfa27a7a9d775dda7baaa9bd8a18972ed0bd86e9ce27948afb0305778f7b5a95
-  languageName: node
-  linkType: hard
-
-"@storybook/addon-onboarding@npm:^8.4.6":
-  version: 8.4.6
-  resolution: "@storybook/addon-onboarding@npm:8.4.6"
-  dependencies:
-    react-confetti: "npm:^6.1.0"
-  peerDependencies:
-    storybook: ^8.4.6
-  checksum: 10c0/dcdb34a13da2f6e7e1f23ea17be814cc4cdfa1c0958061bacf82270c06b556a795f9ec80c7e008a6672f0de3f533f1415d6817f7ffd06049952cfda28ff8f492
   languageName: node
   linkType: hard
 
@@ -1876,7 +1851,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:8.4.6, @storybook/test@npm:^8.4.6":
+"@storybook/test@npm:^8.4.6":
   version: 8.4.6
   resolution: "@storybook/test@npm:8.4.6"
   dependencies:
@@ -2176,6 +2151,15 @@ __metadata:
   dependencies:
     undici-types: "npm:~6.20.0"
   checksum: 10c0/0fbb6d29fa35d807f0223a4db709c598ac08d66820240a2cd6a8a69b8f0bc921d65b339d850a666b43b4e779f967e6ed6cf6f0fca3575e08241e6b900364c234
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.10.2":
+  version: 22.10.2
+  resolution: "@types/node@npm:22.10.2"
+  dependencies:
+    undici-types: "npm:~6.20.0"
+  checksum: 10c0/2c7b71a040f1ef5320938eca8ebc946e6905caa9bbf3d5665d9b3774a8d15ea9fab1582b849a6d28c7fc80756a62c5666bc66b69f42f4d5dafd1ccb193cdb4ac
   languageName: node
   linkType: hard
 
@@ -2662,10 +2646,11 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:^25.0.0"
     "@rollup/plugin-node-resolve": "npm:^15.0.0"
     "@rollup/plugin-typescript": "npm:^11.0.0"
+    "@types/node": "npm:^22.10.2"
     "@types/react": "npm:^18.2.0"
     "@types/react-dom": "npm:^18.2.0"
     eslint: "npm:^8.0.0"
-    lucide-react: "npm:^0.468.0"
+    lucide-react: "npm:~0.468.0"
     react: "npm:^18.2.0"
     rollup: "npm:^4.0.0"
     rollup-plugin-dts: "npm:^6.0.0"
@@ -2688,8 +2673,6 @@ __metadata:
     "@rollup/plugin-node-resolve": "npm:^15.0.0"
     "@rollup/plugin-typescript": "npm:^11.0.0"
     "@storybook/addon-essentials": "npm:^8.4.6"
-    "@storybook/addon-interactions": "npm:^8.4.6"
-    "@storybook/addon-onboarding": "npm:^8.4.6"
     "@storybook/blocks": "npm:^8.4.6"
     "@storybook/react": "npm:^8.4.6"
     "@storybook/react-vite": "npm:^8.4.6"
@@ -2716,7 +2699,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     jest-transform-css: "npm:^6.0.1"
-    lucide-react: "npm:^0.462.0"
+    lucide-react: "npm:~0.468.0"
     postcss: "npm:^8.4.49"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -6545,16 +6528,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.462.0":
-  version: 0.462.0
-  resolution: "lucide-react@npm:0.462.0"
-  peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
-  checksum: 10c0/684477fcd130036c89535ea21a1a35d95fc3e45e41cb5cdcc56702cdb28aa7c8b9f5cfba12123229949d79f6dc19eac27b1d1452a14803a81424d461477c37cf
-  languageName: node
-  linkType: hard
-
-"lucide-react@npm:^0.468.0":
+"lucide-react@npm:~0.468.0":
   version: 0.468.0
   resolution: "lucide-react@npm:0.468.0"
   peerDependencies:
@@ -8464,6 +8438,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "summit-up-design-system@workspace:."
   dependencies:
+    "@esbuild/linux-arm64": "npm:0.24.0"
     "@types/node": "npm:^22.10.1"
     "@typescript-eslint/eslint-plugin": "npm:^8.16.0"
     "@typescript-eslint/parser": "npm:^8.16.0"
