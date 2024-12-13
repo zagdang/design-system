@@ -11,8 +11,6 @@ export default {
     '^.+\\.(ts|tsx)$': ['ts-jest'],
     '\\.css$': 'jest-transform-css'
   }, 
-  maxWorkers: 4,
-  verbose: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['json-summary', 'text', 'lcov'],
