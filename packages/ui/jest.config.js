@@ -5,11 +5,10 @@ export default {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '\\.(css|less|scss|sass)$': 'jest-transform-css'
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
   transform: {
     '^.+\\.(ts|tsx)$': ['ts-jest'],
-    '\\.css$': 'jest-transform-css'
   }, 
   maxWorkers: 4,
   verbose: true,
