@@ -43,7 +43,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn install --immutable
+          yarn install --immutable --immutable-cache
 
       - name: Build Storybook
         run: yarn workspace @zagdang/ui build-storybook --webpack-stats-json
