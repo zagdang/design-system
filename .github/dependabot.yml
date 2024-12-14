@@ -1,14 +1,14 @@
 version: 2
 updates:
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/packages/ui"  
     schedule:
       interval: "daily"
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/packages/icons"  
     schedule:
       interval: "daily"
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/packages/colors" 
     schedule:
       interval: "daily"
