@@ -1,0 +1,44 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title="Design System/colors" />
+
+# Design System
+
+## Summit-up Colors
+
+<pre>
+  **이벤트 주최 및 참여 + 다양한 언어의 오픈소스 코드 제공 = 개발전용 서비스** {'\n'}
+  RGB 색상은 모니터 내에서 사용하는 3원색을 사용하여 메인 컬러로 제작되었습니다.
+</pre>
+
+## Tokens
+
+이 디자인 시스템은 테일윈드 CSS를 기반으로 하며, CSS 변수를 사용하여 일관된 색상 시스템을 제공합니다.
+
+### Base Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Main colors"
+    subtitle="디자인 토큰"
+    colors={{
+      '#E4007F': 'hsl(var(--e4007f))',
+      '#0062FF': 'hsl(var(--0062ff))',
+      '#6EE447': 'hsl(var(--6ee447))',
+    }}
+  />
+  <ColorItem
+    title="Sub colors"
+    subtitle="디자인 토큰"
+    colors={{
+      '#FFFFFF': 'hsl(var(--fff))',
+      '#EFEFEF': 'hsl(var(--efefef))',
+      '#C9CACA': 'hsl(var(--c9caca))',
+      '#B5B5B6': 'hsl(var(--b5b5b6))',
+      '#8E8D93': 'hsl(var(--8e8d93))',
+      '#5C5B60': 'hsl(var(--5c5b60))',
+      '#232325': 'hsl(var(--232325))',
+      '#000000': 'hsl(var(--000))',
+    }}
+  />
+</ColorPalette>

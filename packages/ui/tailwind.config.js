@@ -13,6 +13,9 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      fontFamily: {
+        Poppins: ['Poppins', 'sans-serif'],
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -24,21 +27,18 @@ export default {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
-        primary: {
-          DEFAULT: 'hsl(var(--brand-400))',
-          foreground: 'hsl(var(--brand-400-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        system: {
-          DEFAULT: 'hsl(var(--brand-600))',  
-          foreground: 'hsl(var(--brand-600-foreground))', // error-foreground가 추가되었을 경우
+        primary: 'hsl(var(--primary-base))',
+        secondary: 'hsl(var(--secondary-base))',
+        accent: 'hsl(var(--accent-base))',
+        neutral: {
+          white: 'hsl(var(--neutral-white))',
+          100: 'hsl(var(--neutral-100))',
+          200: 'hsl(var(--neutral-200))',
+          300: 'hsl(var(--neutral-300))',
+          400: 'hsl(var(--neutral-400))',
+          500: 'hsl(var(--neutral-500))',
+          600: 'hsl(var(--neutral-600))',
+          700: 'hsl(var(--neutral-700))',
         },
         error: 'hsl(var(--error))',
         border: 'hsl(var(--border))',

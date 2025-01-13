@@ -45,11 +45,32 @@ jobs:
         run: |
           yarn install --immutable
 
+      - name: Check if Story files exist
+        id: check_stories
+        run: |
+          # Check if any story files exist
+          if [ ! -f $(find packages/ui/src/stories -name '*.stories.tsx' -or -name '*.stories.mdx' | head -n 1) ]; then
+            echo "No story files found, skipping Storybook build"
+            exit 0
+          fi
+          echo "Story files found, proceeding with build"
+
       - name: Build Storybook
+        if: steps.check_stories.outputs.test_exists == 'true'
         run: yarn workspace @zagdang/ui build-storybook --webpack-stats-json
+
+      - name: Check if Storybook build exists
+        if: steps.check_stories.outputs.test_exists == 'true'
+        run: |
+          if [ ! -d "storybook-static" ]; then
+            echo "Storybook build not found, skipping Chromatic"
+            exit 0
+          fi
+          echo "Storybook build found, proceeding with Chromatic"
 
       - name: Create Preview
         id: chromatic
+        if: steps.check_stories.outputs.test_exists == 'true'
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
@@ -59,10 +80,11 @@ jobs:
           exitZeroOnChanges: true
 
       - name: Set URL
-        if: success()
+        if: success() && steps.check_stories.outputs.test_exists == 'true'
         run: echo "STORYBOOK_URL=${{ steps.chromatic.outputs.storybookUrl }}" >> $GITHUB_ENV
 
       - name: Comment PR
+        if: success() && steps.check_stories.outputs.test_exists == 'true'
         uses: thollander/actions-comment-pull-request@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
