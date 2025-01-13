@@ -25,8 +25,13 @@
 @layer base {
   * {
     @apply border-border;
-    font-family: 'Poppins';
-    font-weight: 500;
+    font-family:
+      'Poppins',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
   }
   body {
     @apply bg-background text-foreground;
