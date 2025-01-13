@@ -44,7 +44,17 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable 
 
+      - name: Check if tests exist
+        id: check_tests
+        run: |
+          if [ ! -f $(find . -name '*.test.tsx' -or -name '*.spec.tsx' -or -name '*.test.ts' -or -name '*.spec.ts' | head -n 1) ]; then
+            echo "No tests found, skipping test run"
+            exit 0
+          fi
+          echo "Tests found, running tests with coverage"  
+
       - name: Run tests with coverage
+        if: steps.check_tests.outputs.test_exists == 'true'
         run: yarn test --coverage
 
       - name: Get Coverage Info
