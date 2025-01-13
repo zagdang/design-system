@@ -24,22 +24,17 @@ export default {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
-        primary: {
-          DEFAULT: 'hsl(var(--brand-400))',
-          foreground: 'hsl(var(--brand-400-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        system: {
-          DEFAULT: 'hsl(var(--brand-600))',  
-          foreground: 'hsl(var(--brand-600-foreground))', // error-foreground가 추가되었을 경우
-        },
+        primary: 'hsl(var(--e4007f))',
+        secondary: 'hsl(var(--0062ff))',
+        third: 'hsl(var(--6ee447))',
+        sub100 : 'hsl(var(--fff))',
+        sub200: 'hsl(var(--efefef))',
+        sub300: 'hsl(var(--c9caca))',
+        sub400: 'hsl(var(--b5b5b6))',
+        sub500: 'hsl(var(--8e8d93))',
+        sub600: 'hsl(var(--5c5b60))',
+        sub700: 'hsl(var(--232325))',
+        sub800: 'hsl(var(--000))',
         error: 'hsl(var(--error))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
