@@ -51,13 +51,14 @@ jobs:
             echo "No tests found, skipping test run"
             exit 0
           fi
-          echo "Tests found, running tests with coverage"  
+          echo "Tests found, running tests with coverage"
 
       - name: Run tests with coverage
         if: steps.check_tests.outputs.test_exists == 'true'
         run: yarn test --coverage
 
       - name: Get Coverage Info
+        if: steps.check_tests.outputs.test_exists == 'true'
         id: coverage
         run: |
           COVERAGE_REPORT=$(cat coverage/coverage-summary.json)
@@ -67,6 +68,7 @@ jobs:
           echo "lines=$(echo $COVERAGE_REPORT | jq -r '.total.lines.pct')" >> $GITHUB_OUTPUT
 
       - name: Comment PR with Coverage
+        if: steps.check_tests.outputs.test_exists == 'true'
         uses: thollander/actions-comment-pull-request@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
