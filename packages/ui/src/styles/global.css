@@ -25,8 +25,32 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: 'Poppins';
+    font-weight: 500;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:
+    url('../../assets/Poppins-Medium.woff2') format('woff2'),
+    url('../../assets/Poppins-Medium.woff') format('woff'),
+    url('../../assets/Poppins-Medium.ttf') format('truetype'),
+    url('../../assets/Poppins-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:
+    url('../../assets/Poppins-SemiBold.woff2') format('woff2'),
+    url('../../assets/Poppins-SemiBold.woff') format('woff'),
+    url('../../assets/Poppins-SemiBold.ttf') format('truetype'),
+    url('../../assets/Poppins-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
 }
