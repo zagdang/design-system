@@ -1,6 +1,6 @@
 {
   "name": "@zagdang/colors",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "style": "styles/variable.css",
   "files": [
     "styles/variable.css"
