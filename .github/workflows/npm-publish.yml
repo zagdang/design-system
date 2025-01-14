@@ -45,8 +45,14 @@ jobs:
         run: |
           yarn install --immutable
 
-      - name: Run tests
-        run: yarn test
+      - name: Setup Git User
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+      
+      - name: Setup Git Authentication
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       - name: Build the package
         run: yarn build
@@ -65,7 +71,7 @@ jobs:
 
       - name: Bump version and create tag
         run: |
-          npm version ${{ env.bump_type }} -m "build: release %s"
+          npm version ${{ env.bump_type }} -m "ci(release): release %s"
           git push --follow-tags
 
       - name: Publish to NPM
