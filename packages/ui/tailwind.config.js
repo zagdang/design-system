@@ -8,6 +8,13 @@ export default {
   ],
   theme: {
     extend: {
+      height: {
+        5.5: '1.375rem', // 22px
+      },
+      fontSize: {
+        xxs: '0.625rem', // 10px
+        '3xs' : '0.5rem', // 8px
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -16,6 +23,7 @@ export default {
       fontFamily: {
         Poppins: ['Poppins', 'sans-serif'],
       },
+
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -38,7 +46,7 @@ export default {
           400: 'hsl(var(--neutral-400))',
           500: 'hsl(var(--neutral-500))',
           600: 'hsl(var(--neutral-600))',
-          700: 'hsl(var(--neutral-700))',
+          black: 'hsl(var(--neutral-black))',
         },
         error: 'hsl(var(--error))',
         border: 'hsl(var(--border))',
