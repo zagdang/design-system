@@ -20,7 +20,7 @@
     "chromatic": "dotenv -- chromatic"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "@zagdang/colors": "workspace:*",
     "@zagdang/icons": "workspace:*",
     "class-variance-authority": "^0.7.1",
