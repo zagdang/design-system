@@ -38,7 +38,7 @@ export default {
           400: 'hsl(var(--neutral-400))',
           500: 'hsl(var(--neutral-500))',
           600: 'hsl(var(--neutral-600))',
-          700: 'hsl(var(--neutral-700))',
+          black: 'hsl(var(--neutral-black))',
         },
         error: 'hsl(var(--error))',
         border: 'hsl(var(--border))',
