@@ -1,0 +1,44 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - v.*
+    tags:
+      - 'v*'
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate Changelog with PRs
+        id: changelog
+        run: |
+          echo "Generating changelog with PRs..."
+          COMMITS=$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%H")
+          CHANGELOG=""
+          for COMMIT in $COMMITS; do
+            PR=$(gh pr list --search "$COMMIT" --json number,title --jq '.[] | "- PR #\(.number): \(.title)"')
+            CHANGELOG="$CHANGELOG\n$PR"
+          done
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          body: |
+            ## Changes
+            ${{ env.CHANGELOG }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

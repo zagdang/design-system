@@ -1,0 +1,82 @@
+name: NPM publish
+
+on:
+  push:
+    branches:
+      - v.*
+
+jobs:
+  publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Authenticate to NPM
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+            .pnp.*
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-berry-
+
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
+
+      - name: Install dependencies
+        run: |
+          yarn install --immutable
+
+      - name: Setup Git User
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Setup Git Authentication
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      - name: Build the package
+        run: yarn build
+
+      - name: Commit unstaged changes
+        run: |
+          git add -A
+          git commit -m "chore: prepare for version bump"
+
+      - name: Determine version bump
+        id: version
+        run: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          if echo "$COMMIT_MESSAGE" | grep -q "\[major\]"; then
+            echo "bump_type=major" >> $GITHUB_ENV
+          elif echo "$COMMIT_MESSAGE" | grep -q "\[minor\]"; then
+            echo "bump_type=minor" >> $GITHUB_ENV
+          else
+            echo "bump_type=patch" >> $GITHUB_ENV
+          fi
+
+      - name: Bump version and create tag
+        run: |
+          npm version ${{ env.bump_type }} -m "ci(release): release %s"
+          git push --follow-tags
+
+      - name: Publish to NPM
+        run: npm publish --access public

@@ -1,6 +1,6 @@
 {
   "name": "@zagdang/ui",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "type": "module",
   "module": "dist/index.esm.js",
