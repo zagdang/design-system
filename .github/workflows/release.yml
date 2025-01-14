@@ -3,8 +3,7 @@ name: Create Release
 on:
   push:
     branches:
-      - main
-      - ci/npm-release-tag-auto
+      - v.*
     tags:
       - 'v*'
 
