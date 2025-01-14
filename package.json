@@ -2,7 +2,6 @@
   "name": "summit-up-design-system",
   "version": "0.0.1",
   "packageManager": "yarn@4.5.3",
-  "private": false,
   "scripts": {
     "build": "turbo run build --parallel",
     "dev": "turbo run dev",
