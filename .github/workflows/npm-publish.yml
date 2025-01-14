@@ -62,8 +62,13 @@ jobs:
 
       - name: Bump version and create tag
         run: |
-          npm version ${{ env.bump_type }} -m "build: release %s"
+          npm version ${{ env.bump_type }} -m "ci(release): release %s"
           git push --follow-tags
 
+      - name: Setup Git User
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+        
       - name: Publish to NPM
         run: npm publish --access public
