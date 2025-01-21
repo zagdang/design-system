@@ -5,17 +5,21 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex  gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        default: 'bg-neutral-white py-2 px-5 text-3xs font-bold rounded-sm',
-        outline: 'border border-neutral-white bg-transparent rounded-xl',
+        default: 'items-center justify-center bg-neutral-white-300 py-2 px-5 text-xxs font-bold rounded-sm hover:bg-neutral-white-500',
+        outline: 'items-center justify-center border-0.5 border-neutral-white bg-transparent rounded-xl hover:bg-neutral-white-300',
+        search: 'items-center justify-center border-0.5 border-neutral-white bg-transparent rounded-xl hover:bg-secondary',
+        package: 'items-center justify-left border-0 bg-neutral-540 text-xxs w-full hover:bg-neutral-560',
+        history: 'items-center justify-between border-0 bg-transparent text-xxs w-full pr-2.5 hover:bg-neutral-520',
       },
       size: {
-        default: 'h-6 px-5 py-2',
+        default: 'h-8.5 px-10 py-3.5',
         sm: 'h-5 px-2 py-1.5 text-3xs',
         lg: 'h-5.5 px-2.5 py-1.5 text-xxs',
+        package: 'h-5 py-1.3 pl-5 font-medium',
       },
     },
     defaultVariants: {
