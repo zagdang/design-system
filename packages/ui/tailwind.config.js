@@ -8,8 +8,16 @@ export default {
   ],
   theme: {
     extend: {
+      borderWidth: {
+        0.5: '0.5px',
+      },
+      padding: {
+        1.3: '0.313rem', // 5px
+        3.5 : '0.781rem' // 12.5px
+      },
       height: {
         5.5: '1.375rem', // 22px
+        8.5: '2.188rem' // 35px
       },
       fontSize: {
         xxs: '0.625rem', // 10px
@@ -39,12 +47,19 @@ export default {
         secondary: 'hsl(var(--secondary-base))',
         accent: 'hsl(var(--accent-base))',
         neutral: {
-          white: 'hsl(var(--neutral-white))',
+          white: {
+            DEFAULT: 'hsl(var(--white))',
+            300: 'hsl(var(--white-300))',
+            500: 'hsl(var(--white-500))',
+          },
           100: 'hsl(var(--neutral-100))',
           200: 'hsl(var(--neutral-200))',
           300: 'hsl(var(--neutral-300))',
           400: 'hsl(var(--neutral-400))',
           500: 'hsl(var(--neutral-500))',
+          520: 'hsl(var(--neutral-520))',
+          540: 'hsl(var(--neutral-540))',
+          560: 'hsl(var(--neutral-560))',
           600: 'hsl(var(--neutral-600))',
           black: 'hsl(var(--neutral-black))',
         },

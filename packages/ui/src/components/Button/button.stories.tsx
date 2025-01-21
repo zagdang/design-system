@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { Button } from './button';
+
+import Close from '@/assets/Button/close.svg';
+
 const meta = {
   title: 'Components/Button',
   component: Button,
@@ -37,71 +41,14 @@ export const Default: Story = {
       default: 'dark',
     },
   },
-};
-// 모든 variant 보여주기
-export const Variants: Story = {
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
-  render: () => (
-    <div className="flex flex-wrap gap-4">
-      <Button variant="default">Default</Button>
-      <Button
-        variant="outline"
-        size="lg"
-      >
-        <span className="text-neutral-white">버튼</span>
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-      >
-        <span className="text-neutral-white">버튼</span>
-      </Button>
-    </div>
+  render: ({ children }) => (
+    <Button>
+      <span className="text-neutral-white">{children}</span>
+    </Button>
   ),
-};
-// 모든 size 보여주기
-export const Sizes: Story = {
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
-  render: () => (
-    <div className="flex flex-wrap gap-4">
-      <Button
-        variant="outline"
-        size="lg"
-      >
-        <span className="text-neutral-white">버튼</span>
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-      >
-        <span className="text-neutral-white">버튼</span>
-      </Button>
-    </div>
-  ),
-};
-// 비활성화된 상태
-export const Disabled: Story = {
-  args: {
-    children: 'Disabled Button',
-    disabled: true,
-  },
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
 };
 
-// Loading 상태 (추가하고 싶다면)
-export const Loading: Story = {
+export const Discover: Story = {
   parameters: {
     backgrounds: {
       default: 'dark',
@@ -109,21 +56,76 @@ export const Loading: Story = {
   },
   render: () => (
     <div className="flex flex-wrap gap-4">
-      <Button disabled>
-        <svg
-          className="animate-spin"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 22c5.523 0 10-4.477 10-10h-2c0 4.418-3.582 8-8 8s-8-3.582-8-8c0-4.418 3.582-8 8-8V2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10z" />
-        </svg>
+      <Button variant="default">
+        {' '}
+        <span className="text-neutral-white">Front-end</span>
+      </Button>
+    </div>
+  ),
+};
+
+export const Icons: Story = {
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
+  render: () => (
+    <div className="flex flex-wrap gap-4">
+      <Button
+        variant="outline"
+        size="lg"
+      >
+        <span className="text-neutral-white">버튼</span>
+      </Button>
+      <Button
+        variant="search"
+        size="lg"
+      >
+        <span className="text-neutral-white">버튼</span>
+      </Button>
+    </div>
+  ),
+};
+
+export const Package: Story = {
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
+  render: () => (
+    <div className="flex flex-wrap w-96 gap-4">
+      <Button
+        variant="package"
+        size="package"
+      >
+        <span className=" text-neutral-white">버튼</span>
+      </Button>
+    </div>
+  ),
+};
+
+export const History: Story = {
+  parameters: {
+    backgrounds: {
+      default: 'dark',
+    },
+  },
+  render: () => (
+    <div className="flex flex-wrap w-96 gap-4">
+      <Button
+        variant="history"
+        size="package"
+        className="relative group"
+      >
+        <span className=" text-neutral-white">버튼</span>
+        <span className="text-neutral-white opacity-0 group-hover:opacity-100 transition-opacity">
+          <img
+            src={Close}
+            alt="closeBtn"
+          />
+        </span>
       </Button>
     </div>
   ),
