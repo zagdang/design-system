@@ -63,9 +63,9 @@ jobs:
         uses: actions/create-release@v1
         with:
           tag_name: ${{ env.NEW_TAG }}
-          release_name: ${{ env.NEW_TAG }}
+          release_name: ${{ env.NEW_TAG }} # 릴리즈 제목을 태그와 동일하게 설정
           body: |
-            ## Changes
+            ## Changelog
             ${{ env.CHANGELOG }}
           draft: false
           prerelease: false
