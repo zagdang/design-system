@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "**/*.cjs", "postcss.config.js"],
+  "include": ["src", "**/*.cjs", "postcss.config.js", "vite-env.d.ts", "custom.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
