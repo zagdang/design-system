@@ -1,5 +1,9 @@
 name: CI
 
+permissions:
+  pull-requests: write
+  contents: read
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -117,6 +121,13 @@ jobs:
           
       - name: Run tests
         run: yarn turbo test
+
+      - name: Check for coverage summary
+        run: |
+          if [ ! -f coverage/coverage-summary.json ]; then
+            echo "coverage-summary.json not found!"
+            exit 1
+          fi
 
       - name: Get Coverage Info
         id: coverage
