@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
-      
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -27,6 +27,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Enable Corepack (for Yarn 2)
         run: |
@@ -53,7 +58,11 @@ jobs:
         run: yarn install --immutable
       
       - name: Install TurboRepo
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn add turbo --dev
+
+      - name: Set Node.js memory limit
+        run: echo "NODE_OPTIONS=--max_old_space_size=2048" >> $GITHUB_ENV
 
       - name: Prettier check
         run: yarn format --check
@@ -67,11 +76,19 @@ jobs:
       - name: Build project
         run: |
           yarn turbo build --parallel
-        env:
-          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Cache Storybook build
+        id: cache-storybook
+        uses: actions/cache@v3
+        with:
+          path: packages/ui/storybook-static
+          key: ${{ runner.os }}-storybook-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-storybook-
       
       - name: Build Storybook
         run: yarn turbo run build-storybook
+        if: steps.cache-storybook.outputs.cache-hit != 'true'
 
   required:
     needs: [build]
