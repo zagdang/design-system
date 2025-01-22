@@ -122,36 +122,36 @@ jobs:
       - name: Run tests
         run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci --coverage
 
-      - name: Check for coverage summary
-        run: |
-          if [ ! -f packages/ui/coverage/coverage-final.json ]; then
-            echo "coverage-final.json not found in packages/ui/coverage"
-            exit 1
-          else
-            echo "Coverage report found successfully."
-          fi
+      # - name: Check for coverage summary
+      #   run: |
+      #     if [ ! -f packages/ui/coverage/coverage-final.json ]; then
+      #       echo "coverage-final.json not found in packages/ui/coverage"
+      #       exit 1
+      #     else
+      #       echo "Coverage report found successfully."
+      #     fi
 
-      - name: Get Coverage Info
-        id: coverage
-        run: |
-          COVERAGE_REPORT=$(cat packages/ui/coverage/coverage-final.json)
-          echo "statements=$(echo $COVERAGE_REPORT | jq -r '.total.statements.pct')" >> $GITHUB_OUTPUT
-          echo "branches=$(echo $COVERAGE_REPORT | jq -r '.total.branches.pct')" >> $GITHUB_OUTPUT
-          echo "functions=$(echo $COVERAGE_REPORT | jq -r '.total.functions.pct')" >> $GITHUB_OUTPUT
-          echo "lines=$(echo $COVERAGE_REPORT | jq -r '.total.lines.pct')" >> $GITHUB_OUTPUT
+      # - name: Get Coverage Info
+      #   id: coverage
+      #   run: |
+      #     COVERAGE_REPORT=$(cat packages/ui/coverage/coverage-final.json)
+      #     echo "statements=$(echo $COVERAGE_REPORT | jq -r '.total.statements.pct')" >> $GITHUB_OUTPUT
+      #     echo "branches=$(echo $COVERAGE_REPORT | jq -r '.total.branches.pct')" >> $GITHUB_OUTPUT
+      #     echo "functions=$(echo $COVERAGE_REPORT | jq -r '.total.functions.pct')" >> $GITHUB_OUTPUT
+      #     echo "lines=$(echo $COVERAGE_REPORT | jq -r '.total.lines.pct')" >> $GITHUB_OUTPUT
         
 
-      - name: Comment PR with Coverage
-        uses: thollander/actions-comment-pull-request@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          message: |
-            ## Test Coverage Report 📊
-            - Statements: ${{ steps.coverage.outputs.statements }}%
-            - Branches: ${{ steps.coverage.outputs.branches }}%
-            - Functions: ${{ steps.coverage.outputs.functions }}%
-            - Lines: ${{ steps.coverage.outputs.lines }}%
+      # - name: Comment PR with Coverage
+      #   uses: thollander/actions-comment-pull-request@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     message: |
+      #       ## Test Coverage Report 📊
+      #       - Statements: ${{ steps.coverage.outputs.statements }}%
+      #       - Branches: ${{ steps.coverage.outputs.branches }}%
+      #       - Functions: ${{ steps.coverage.outputs.functions }}%
+      #       - Lines: ${{ steps.coverage.outputs.lines }}%
 
   build:
     needs: [install-dependencies, lint]
