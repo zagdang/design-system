@@ -58,7 +58,6 @@ jobs:
         run: yarn install --immutable
       
       - name: Install TurboRepo
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn add turbo --dev
 
       - name: Prettier check
