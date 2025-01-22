@@ -86,7 +86,7 @@ jobs:
       
       - name: Build Storybook
         if: steps.cache-storybook.outputs.cache-hit != 'true'
-        run: yarn turbo run build-storybook -- --parallel --quiet
+        run: yarn turbo run build-storybook -- --quiet
 
   required:
     needs: [build]
