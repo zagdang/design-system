@@ -27,7 +27,9 @@ jobs:
           fetch-depth: 2
 
       - name: Enable Corepack (for Yarn 2)
-        run: corepack enable
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
 
       - name: Cache Yarn dependencies
         uses: actions/cache@v3
@@ -42,11 +44,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-berry-
 
-      - name: Install Yarn 2 (Berry)
-        run: corepack prepare yarn@4.5.3 --activate
-
       - name: Install dependencies
-        run: yarn install --immutable 
+        run: yarn install --immutable
 
       - name: Install TurboRepo
         run: yarn add turbo --dev
@@ -77,7 +76,7 @@ jobs:
           corepack prepare yarn@4.5.3 --activate
       - name: Run tests
         run: yarn turbo test
-      
+
       - name: Get Coverage Info
         id: coverage
         run: |
@@ -98,31 +97,23 @@ jobs:
             - Branches: ${{ steps.coverage.outputs.branches }}%
             - Functions: ${{ steps.coverage.outputs.functions }}%
             - Lines: ${{ steps.coverage.outputs.lines }}%
-  
+
   build:
     needs: [changes, lint, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Enable Corepack (for Yarn 2)
-        run: |
-          corepack enable
-          corepack prepare yarn@4.5.3 --activate
       - name: Build project
         run: |
           yarn turbo build --parallel
         env:
           NODE_OPTIONS: --max-old-space-size=4096
-  
+
   storybookBuild:
     needs: [changes, lint, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Enable Corepack (for Yarn 2)
-        run: |
-          corepack enable
-          corepack prepare yarn@4.5.3 --activate
       - name: Build Storybook
         run: yarn turbo run build-storybook
 
