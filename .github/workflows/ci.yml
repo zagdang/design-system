@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  install-dependencies:
+  build:
     if: ${{ github.actor != 'l10nbot' }} # Avoid running for 'l10nbot'
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -59,33 +59,6 @@ jobs:
       - name: Install TurboRepo
         run: yarn add turbo --dev
 
-  build:
-    needs: [install-dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Enable Corepack (for Yarn 2)
-        run: |
-          corepack enable
-          corepack prepare yarn@4.5.3 --activate
-
-      - name: Restore Yarn cache
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            .yarn/cache
-            .yarn/unplugged
-            .yarn/build-state.yml
-            .yarn/install-state.gz
-            .pnp.*
-          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-berry-
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
       - name: Prettier check
         run: yarn format --check
 
@@ -105,7 +78,7 @@ jobs:
         run: yarn turbo run build-storybook
 
   # build:
-  #   needs: [install-dependencies, lint-and-test]
+  #   needs: [install-dependencies]
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v4
@@ -113,7 +86,7 @@ jobs:
   #       run: |
   #         corepack enable
   #         corepack prepare yarn@4.5.3 --activate
-      
+
   #     - name: Restore Yarn cache
   #       id: cache
   #       uses: actions/cache@v3
@@ -127,10 +100,19 @@ jobs:
   #         key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
   #         restore-keys: |
   #           ${{ runner.os }}-yarn-berry-
-          
+
   #     - name: Install dependencies
   #       run: yarn install --immutable
 
+  #     - name: Prettier check
+  #       run: yarn format --check
+
+  #     - name: Lint
+  #       run: yarn lint
+      
+  #     - name: Run tests
+  #       run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
+      
   #     - name: Build project
   #       run: |
   #         yarn turbo build --parallel
@@ -141,7 +123,7 @@ jobs:
   #       run: yarn turbo run build-storybook
 
   required:
-    needs: [install-dependencies, build]
+    needs: [build]
     if: always()
     runs-on: ubuntu-latest
     steps:
