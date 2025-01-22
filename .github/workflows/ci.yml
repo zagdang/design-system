@@ -28,10 +28,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '22'
 
       - name: Enable Corepack (for Yarn 2)
         run: |
@@ -72,6 +72,8 @@ jobs:
       - name: Build project
         run: |
           yarn turbo build --parallel
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
       
       - name: Build Storybook
         run: yarn turbo run build-storybook -- --quiet
