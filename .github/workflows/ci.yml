@@ -28,12 +28,6 @@ jobs:
         with:
           fetch-depth: 2
       
-      - name: Ensure Yarn Cache Directory Exists
-        run: mkdir -p .yarn/cache .yarn/unplugged
-      
-      - name: Set Yarn Cache Directory
-        run: yarn config set cacheFolder .yarn/cache
-      
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -43,8 +37,7 @@ jobs:
         run: |
           corepack enable
           corepack prepare yarn@4.5.3 --activate
-      
-          
+
       - name: Cache Yarn dependencies
         id: cache
         uses: actions/cache@v3
@@ -58,14 +51,10 @@ jobs:
           key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock', 'package.json', '.yarnrc.yml') }}
           restore-keys: |
             ${{ runner.os }}-yarn-berry-
-      
-      - name: Clear Yarn Cache
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn cache clean
-            
+    
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --immutable --immutable-cache
+        run: yarn install --immutable
       
       - name: Install TurboRepo
         run: yarn add turbo --dev
