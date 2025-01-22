@@ -62,7 +62,7 @@ jobs:
         run: yarn lint
       
       - name: Run tests
-        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand
+        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
       
       - name: Build project
         run: |
