@@ -1,4 +1,4 @@
-name: FRONTEND-CI
+name: CI
 
 on:
   pull_request:
@@ -78,6 +78,9 @@ jobs:
           key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-berry-
+
+      - name: Install dependencies
+        run: yarn install --immutable
 
       - name: Prettier check
         run: yarn format --check
