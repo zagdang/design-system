@@ -18,6 +18,22 @@
     "clean": {
       "cache": false,
       "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": [    
+        "packages/ui/coverage/**", 
+        "packages/ui/junit.xml",
+        "coverage/**"
+      ],
+      "cache": true,
+      "persistent": false
+    },
+    "build-storybook": {
+      "dependsOn": ["^build"],
+      "outputs": ["packages/ui/storybook-static/**"],
+      "cache": true,
+      "persistent": false
     }
   }
 }
