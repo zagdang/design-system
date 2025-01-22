@@ -154,7 +154,7 @@ jobs:
             - Lines: ${{ steps.coverage.outputs.lines }}%
 
   build:
-    needs: [install-dependencies, lint, test]
+    needs: [install-dependencies, lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -187,7 +187,7 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
 
   storybook-build:
-    needs: [install-dependencies, lint, test]
+    needs: [install-dependencies, lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
