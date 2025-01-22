@@ -62,7 +62,7 @@ jobs:
         run: yarn add turbo --dev
 
       - name: Set Node.js memory limit
-        run: echo "NODE_OPTIONS=--max_old_space_size=2048" >> $GITHUB_ENV
+        run: echo "NODE_OPTIONS=--max_old_space_size=2048" 
 
       - name: Prettier check
         run: yarn format --check
