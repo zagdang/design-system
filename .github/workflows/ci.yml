@@ -85,6 +85,7 @@ jobs:
             ${{ runner.os }}-storybook-
       
       - name: Build Storybook
+        if: steps.cache-storybook.outputs.cache-hit != 'true'
         run: yarn turbo run build-storybook
 
   required:
