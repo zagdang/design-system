@@ -21,7 +21,11 @@
     },
     "test": {
       "dependsOn": ["^build"],
-      "outputs": ["packages/ui/coverage/**"],
+      "outputs": [    
+        "packages/ui/coverage/**", 
+        "packages/ui/junit.xml",
+        "coverage/**"
+      ],
       "cache": true,
       "persistent": false
     }

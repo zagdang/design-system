@@ -14,7 +14,7 @@ export default {
   verbose: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['json-summary', 'text', 'lcov'],
+  coverageReporters: ["json", "lcov", "text", "clover"],
   coverageThreshold: {
     global: {
       branches: 80,

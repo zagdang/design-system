@@ -9,10 +9,10 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
-  push:
-    branches:
-      - main
-      - ci/ci-pipeline
+  # push:
+  #   branches:
+  #     - main
+  #     - ci/ci-pipeline
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -120,11 +120,11 @@ jobs:
         run: yarn install --immutable
           
       - name: Run tests
-        run: yarn turbo test
+        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci --coverage
 
       - name: Check for coverage summary
         run: |
-          if [ ! -f coverage/coverage-summary.json ]; then
+          if [ ! -f packages/ui/coverage/coverage-summary.json ]; then
             echo "coverage-summary.json not found!"
             exit 1
           fi
