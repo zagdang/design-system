@@ -54,11 +54,9 @@ jobs:
             ${{ runner.os }}-yarn-berry-
               
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --immutable
+        run: yarn install --immutable --immutable-cache
       
       - name: Install TurboRepo
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn add turbo --dev
 
       - name: Set Node.js memory limit
