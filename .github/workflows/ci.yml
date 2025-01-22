@@ -49,12 +49,14 @@ jobs:
             .yarn/build-state.yml
             .yarn/install-state.gz
             .pnp.*
-          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}-${{ hashFiles('package.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-berry-
-              
+            
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable --immutable-cache
+        
       
       - name: Install TurboRepo
         run: yarn add turbo --dev
