@@ -217,7 +217,7 @@ jobs:
         run: yarn turbo run build-storybook
 
   required:
-    needs: [install-dependencies, lint, build, storybook-build]
+    needs: [install-dependencies, lint, test, build, storybook-build]
     if: always()
     runs-on: ubuntu-latest
     steps:
