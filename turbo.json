@@ -18,6 +18,12 @@
     "clean": {
       "cache": false,
       "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["packages/ui/coverage/**"],
+      "cache": true,
+      "persistent": false
     }
   }
 }
