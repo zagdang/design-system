@@ -67,6 +67,8 @@ jobs:
       - name: Build project
         run: |
           yarn turbo build --parallel
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
       
       - name: Build Storybook
         run: yarn turbo run build-storybook
