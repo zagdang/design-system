@@ -65,6 +65,20 @@ jobs:
           corepack enable
           corepack prepare yarn@4.5.3 --activate
 
+      - name: Restore Yarn cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+            .pnp.*
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-berry-
+
       - name: Prettier check
         run: yarn format --check
 
