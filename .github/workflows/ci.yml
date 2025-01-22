@@ -1,0 +1,120 @@
+name: FRONTEND-CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      - ci/ci-pipeline
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    if: ${{ github.actor != 'l10nbot' }} # Avoid running for 'l10nbot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Enable Corepack (for Yarn 2)
+        run: corepack enable
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+            .pnp.*
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-berry-
+
+      - name: Install Yarn 2 (Berry)
+        run: corepack prepare yarn@4.5.3 --activate
+
+      - name: Install dependencies
+        run: yarn install --immutable 
+
+      - name: Install TurboRepo
+        run: yarn add turbo --dev
+
+  lint:
+    needs: [changes]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prettier check
+        run: yarn format --check
+
+      - name: Lint
+        run: yarn lint
+
+  test:
+    needs: [changes, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: yarn turbo test
+      
+      - name: Get Coverage Info
+        id: coverage
+        run: |
+          COVERAGE_REPORT=$(cat coverage/coverage-summary.json)
+          echo "statements=$(echo $COVERAGE_REPORT | jq -r '.total.statements.pct')" >> $GITHUB_OUTPUT
+          echo "branches=$(echo $COVERAGE_REPORT | jq -r '.total.branches.pct')" >> $GITHUB_OUTPUT
+          echo "functions=$(echo $COVERAGE_REPORT | jq -r '.total.functions.pct')" >> $GITHUB_OUTPUT
+          echo "lines=$(echo $COVERAGE_REPORT | jq -r '.total.lines.pct')" >> $GITHUB_OUTPUT
+
+      - name: Comment PR with Coverage
+        uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            ## Test Coverage Report 📊
+            - Statements: ${{ steps.coverage.outputs.statements }}%
+            - Branches: ${{ steps.coverage.outputs.branches }}%
+            - Functions: ${{ steps.coverage.outputs.functions }}%
+            - Lines: ${{ steps.coverage.outputs.lines }}%
+  
+  build:
+    needs: [changes, lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build project
+        run: |
+          yarn turbo build --parallel
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+  
+  storybookBuild:
+    needs: [changes, lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Storybook
+        run: yarn turbo run build-storybook
+
+  required:
+    needs: [changes, lint, build, storybookBuild]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: fail if conditional jobs failed
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'skipped') || contains(needs.*.result, 'cancelled')
+        run: exit 1
