@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
-
+      
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -37,7 +37,8 @@ jobs:
         run: |
           corepack enable
           corepack prepare yarn@4.5.3 --activate
-
+      
+          
       - name: Cache Yarn dependencies
         id: cache
         uses: actions/cache@v3
@@ -48,19 +49,16 @@ jobs:
             .yarn/build-state.yml
             .yarn/install-state.gz
             .pnp.*
-          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock', 'package.json', '.yarnrc.yml') }}
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-berry-
-    
+              
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
       
       - name: Install TurboRepo
         run: yarn add turbo --dev
-
-      - name: Set Node.js memory limit
-        run: echo "NODE_OPTIONS=--max_old_space_size=2048" 
 
       - name: Prettier check
         run: yarn format --check
@@ -74,7 +72,7 @@ jobs:
       - name: Build project
         run: |
           yarn turbo build --parallel
-
+      
       - name: Cache Storybook build
         id: cache-storybook
         uses: actions/cache@v3
@@ -86,7 +84,6 @@ jobs:
       
       - name: Build Storybook
         run: yarn turbo run build-storybook
-        if: steps.cache-storybook.outputs.cache-hit != 'true'
 
   required:
     needs: [build]
