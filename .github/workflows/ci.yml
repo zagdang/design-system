@@ -56,6 +56,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enable Corepack (for Yarn 2)
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
       - name: Prettier check
         run: yarn format --check
 
@@ -67,6 +71,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enable Corepack (for Yarn 2)
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
       - name: Run tests
         run: yarn turbo test
       
@@ -96,6 +104,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enable Corepack (for Yarn 2)
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
       - name: Build project
         run: |
           yarn turbo build --parallel
@@ -107,6 +119,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enable Corepack (for Yarn 2)
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.3 --activate
       - name: Build Storybook
         run: yarn turbo run build-storybook
 
