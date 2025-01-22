@@ -97,6 +97,24 @@ jobs:
         run: |
           corepack enable
           corepack prepare yarn@4.5.3 --activate
+
+      - name: Restore Yarn cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+            .pnp.*
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-berry-
+          
+      - name: Install dependencies
+        run: yarn install --immutable
+          
       - name: Run tests
         run: yarn turbo test
 
@@ -126,6 +144,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Restore Yarn cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+            .pnp.*
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-berry-
+          
+      - name: Install dependencies
+        run: yarn install --immutable
+
       - name: Build project
         run: |
           yarn turbo build --parallel
@@ -137,6 +173,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Restore Yarn cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+            .yarn/install-state.gz
+            .pnp.*
+          key: ${{ runner.os }}-yarn-berry-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-berry-
+          
+      - name: Install dependencies
+        run: yarn install --immutable
+
       - name: Build Storybook
         run: yarn turbo run build-storybook
 
