@@ -62,13 +62,11 @@ jobs:
         run: yarn lint
       
       - name: Run tests
-        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
+        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand
       
       - name: Build project
         run: |
           yarn turbo build --parallel
-        env:
-          NODE_OPTIONS: --max-old-space-size=4096
       
       - name: Build Storybook
         run: yarn turbo run build-storybook
