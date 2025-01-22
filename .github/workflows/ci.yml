@@ -120,7 +120,7 @@ jobs:
         run: yarn install --immutable
           
       - name: Run tests
-        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci --coverage
+        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
 
       # - name: Check for coverage summary
       #   run: |
