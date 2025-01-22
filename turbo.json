@@ -28,6 +28,12 @@
       ],
       "cache": true,
       "persistent": false
+    },
+    "build-storybook": {
+      "dependsOn": ["^build"],
+      "outputs": ["packages/ui/storybook-static/**"],
+      "cache": true,
+      "persistent": false
     }
   }
 }

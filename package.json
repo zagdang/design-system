@@ -4,6 +4,7 @@
   "packageManager": "yarn@4.5.3",
   "scripts": {
     "build": "turbo run build --parallel",
+    "build-storybook": "turbo run build-storybook",
     "dev": "turbo run dev",
     "lint": "eslint 'packages/**/*.{ts,tsx,js,jsx}' --ext .ts,.tsx,.js,.jsx && prettier --check .",
     "lint:fix": "eslint . --fix && prettier --write .",
