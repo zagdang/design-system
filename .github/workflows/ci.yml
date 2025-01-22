@@ -72,6 +72,8 @@ jobs:
       
       - name: Build Storybook
         run: yarn turbo run build-storybook
+        env:
+          NODE_OPTIONS: --max-old-space-size=12288
 
   required:
     needs: [build]
