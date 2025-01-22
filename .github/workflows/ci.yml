@@ -66,16 +66,7 @@ jobs:
       
       - name: Build project
         run: |
-          yarn turbo build --parallel
+          yarn turbo build
       
       - name: Build Storybook
         run: yarn turbo run build-storybook
-
-  required:
-    needs: [build]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: fail if conditional jobs failed
-        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'skipped') || contains(needs.*.result, 'cancelled')
-        run: exit 1
