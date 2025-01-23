@@ -9,6 +9,9 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
+  push:
+    branches:
+      - ci/refac
       
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -55,18 +58,18 @@ jobs:
       - name: Install TurboRepo
         run: yarn add turbo --dev
 
-      - name: Prettier check
-        run: yarn format --check
+      - name: CI 
+        run: yarn turbo run format lint test build build-storybook --parallel
 
-      - name: Lint
-        run: yarn lint
+      # - name: Lint
+      #   run: yarn lint
       
-      - name: Run tests
-        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
+      # - name: Run tests
+      #   run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
       
-      - name: Build project
-        run: |
-          yarn turbo build --parallel
+      # - name: Build project
+      #   run: |
+      #     yarn turbo build --parallel
       
-      - name: Build Storybook
-        run: yarn turbo run build-storybook
+      # - name: Build Storybook
+      #   run: yarn turbo run build-storybook
