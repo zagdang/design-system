@@ -6,14 +6,14 @@
     "build": "turbo run build --parallel",
     "build-storybook": "turbo run build-storybook",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "lint": "eslint 'packages/**/*.{ts,tsx,js,jsx}' --ext .ts,.tsx,.js,.jsx && prettier --check .",
     "lint:fix": "eslint . --fix && prettier --write .",
-    "format": "turbo run format",
+    "format": "prettier --write .",
     "clean": "turbo run clean",
     "icons": "yarn workspace @zagdang/icons",
     "colors": "yarn workspace @zagdang/colors",
     "ui": "yarn workspace @zagdang/ui",
-    "typescript": "turbo run typescript",
+    "typescript": "tsc --noEmit",
     "test": "turbo run test "
   },
   "workspaces": [

@@ -11,16 +11,6 @@
       "cache": false,
       "persistent": false
     },
-    "format": {
-      "outputs": [],
-      "cache": false,
-      "persistent": false
-    },
-    "typescript": {
-      "outputs": [],
-      "cache": true,
-      "persistent": false
-    },
     "dev": {
       "cache": false,
       "persistent": true
