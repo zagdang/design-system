@@ -2282,7 +2282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react-vite@npm:^8.4.6":
+"@storybook/react-vite@npm:8.4.6":
   version: 8.4.6
   resolution: "@storybook/react-vite@npm:8.4.6"
   dependencies:
@@ -2304,7 +2304,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:8.4.6, @storybook/react@npm:^8.4.6":
+"@storybook/react@npm:8.4.6":
   version: 8.4.6
   resolution: "@storybook/react@npm:8.4.6"
   dependencies:
@@ -2655,6 +2655,15 @@ __metadata:
   version: 1.39.13
   resolution: "@types/emscripten@npm:1.39.13"
   checksum: 10c0/99c314418b6fbe113c4c81dc89501bdf723020d1de262a36a4e45236b268dcec3deab104e3a7d3569e6d7c5c942de30c9c6d77b93170c1bcaa85620c7ee4c2ba
+  languageName: node
+  linkType: hard
+
+"@types/esprima@npm:^4":
+  version: 4.0.6
+  resolution: "@types/esprima@npm:4.0.6"
+  dependencies:
+    "@types/estree": "npm:*"
+  checksum: 10c0/58544b9a2a017b9efdb4fafd4b7b1bc49bd1e555ad78a53acc5ef3de9ec208e43d29470d1cd24f2e86bf75605303aab47f4dbf3a1528018fda1e93a23d532edc
   languageName: node
   linkType: hard
 
@@ -3287,13 +3296,14 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^11.0.0"
     "@storybook/addon-essentials": "npm:^8.4.6"
     "@storybook/blocks": "npm:^8.4.6"
-    "@storybook/react": "npm:^8.4.6"
-    "@storybook/react-vite": "npm:^8.4.6"
+    "@storybook/react": "npm:8.4.6"
+    "@storybook/react-vite": "npm:8.4.6"
     "@storybook/test": "npm:^8.4.6"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^14.2.1"
     "@testing-library/user-event": "npm:^14.5.2"
+    "@types/esprima": "npm:^4"
     "@types/identity-obj-proxy": "npm:^3"
     "@types/jest": "npm:^29.5.12"
     "@types/node": "npm:^22.10.1"
@@ -3304,12 +3314,13 @@ __metadata:
     "@zagdang/colors": "workspace:*"
     "@zagdang/icons": "workspace:*"
     autoprefixer: "npm:^10.4.20"
-    chromatic: "npm:^11.20.0"
+    chromatic: "npm:^11.25.2"
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
     dotenv-cli: "npm:^7.4.4"
     eslint: "npm:^8.0.0"
     eslint-plugin-storybook: "npm:^0.11.1"
+    esprima: "npm:4"
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
@@ -3319,13 +3330,14 @@ __metadata:
     react-dom: "npm:^18.2.0"
     rollup: "npm:^4.0.0"
     rollup-plugin-dts: "npm:^6.0.0"
-    storybook: "npm:^8.4.6"
+    storybook: "npm:8.4.6"
+    supports-color: "npm:10"
     tailwind-merge: "npm:^2.5.5"
     tailwindcss: "npm:^3.4.15"
     tailwindcss-animate: "npm:^1.0.7"
     ts-jest: "npm:^29.1.2"
     tslib: "npm:^2.6.0"
-    typescript: "npm:^5.7.2"
+    typescript: "npm:5.7.2"
     vite: "npm:^6.0.2"
     vite-plugin-svgr: "npm:^4.3.0"
   peerDependencies:
@@ -4019,7 +4031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:^11.15.0, chromatic@npm:^11.20.0":
+"chromatic@npm:^11.15.0":
   version: 11.20.0
   resolution: "chromatic@npm:11.20.0"
   peerDependencies:
@@ -4035,6 +4047,25 @@ __metadata:
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
   checksum: 10c0/26e63794b38f3b76ea8b4f2ad2fc47057a049f76a684d44a3b541a774c50d7bed901c885cb60e4baf5df26d37574c20faaea897bc38f8606949456ba6d9eab2a
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^11.25.2":
+  version: 11.25.2
+  resolution: "chromatic@npm:11.25.2"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 10c0/2cb4bb40a062005292a4cd606321f6c9bdaa31e255e66bae12c780bca9b72e883c017ebe48c5a9228db88a010f5977571ef7dfdcdd4195ad0e7b955f9966d7df
   languageName: node
   linkType: hard
 
@@ -5141,7 +5172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esprima@npm:^4.0.0, esprima@npm:^4.0.1, esprima@npm:~4.0.0":
+"esprima@npm:4, esprima@npm:^4.0.0, esprima@npm:^4.0.1, esprima@npm:~4.0.0":
   version: 4.0.1
   resolution: "esprima@npm:4.0.1"
   bin:
@@ -8860,7 +8891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:^8.4.6":
+"storybook@npm:8.4.6":
   version: 8.4.6
   resolution: "storybook@npm:8.4.6"
   dependencies:
@@ -9043,6 +9074,13 @@ __metadata:
     typescript: "npm:^5.7.2"
   languageName: unknown
   linkType: soft
+
+"supports-color@npm:10":
+  version: 10.0.0
+  resolution: "supports-color@npm:10.0.0"
+  checksum: 10c0/0e7884dfd02a07b3c6e0b235346f58c19f0201f1e44f7807583581761b354688c8577378785b5a4e3b03110809786c4c808e0e086cd91911f7b8bc59132703a8
+  languageName: node
+  linkType: hard
 
 "supports-color@npm:^7.1.0":
   version: 7.2.0
@@ -9536,7 +9574,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.7.2":
+"typescript@npm:5.7.2, typescript@npm:^5.7.2":
   version: 5.7.2
   resolution: "typescript@npm:5.7.2"
   bin:
@@ -9546,7 +9584,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>":
   version: 5.7.2
   resolution: "typescript@patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=5786d5"
   bin:

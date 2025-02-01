@@ -11,6 +11,9 @@ export default {
       borderWidth: {
         0.5: '0.5px',
       },
+      width: {
+        30: '7.25rem' //116px
+      },
       padding: {
         1.3: '0.313rem', // 5px
         3.5 : '0.781rem' // 12.5px
