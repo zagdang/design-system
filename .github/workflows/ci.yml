@@ -9,6 +9,9 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
+  push:
+    branches:
+      - main
       
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -28,6 +31,11 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Enable Corepack (for Yarn 2)
         run: |
           corepack enable
@@ -36,7 +44,7 @@ jobs:
           
       - name: Cache Yarn dependencies
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v4
         with:
           path: |
             .yarn/cache
@@ -55,18 +63,18 @@ jobs:
       - name: Install TurboRepo
         run: yarn add turbo --dev
 
-      - name: Prettier check
-        run: yarn format --check
+      - name: CI 
+        run: yarn turbo run format lint test build build-storybook --parallel
 
-      - name: Lint
-        run: yarn lint
+      # - name: Lint
+      #   run: yarn lint
       
-      - name: Run tests
-        run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
+      # - name: Run tests
+      #   run: yarn turbo run test --filter=@zagdang/ui -- --runInBand --ci
       
-      - name: Build project
-        run: |
-          yarn turbo build --parallel
+      # - name: Build project
+      #   run: |
+      #     yarn turbo build --parallel
       
-      - name: Build Storybook
-        run: yarn turbo run build-storybook
+      # - name: Build Storybook
+      #   run: yarn turbo run build-storybook
